@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredio - Smart Ingredient Scanner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            text-align: center;
+            background: white;
+            padding: 50px 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 27px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #1a1a1a;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .tagline {
+            color: #6b7280;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .feature {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 0.9em;
+        }
+        .feature-icon {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        .links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .links a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 12px 24px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .links a:hover {
+            background: #667eea;
+            color: white;
+        }
+        .app-store {
+            margin-top: 20px;
+        }
+        .app-store img {
+            height: 50px;
+        }
+        footer {
+            margin-top: 30px;
+            color: #9ca3af;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/3e/a7/8e/3ea78e0a-f2a0-93ea-87b4-9f82c4c8c0c5/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/460x0w.webp" alt="Ingredio Logo" class="logo">
+
+        <h1>Ingredio</h1>
+        <p class="tagline">Smart Ingredient Scanner & Nutrition Tracker</p>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">📸</div>
+                <div>AI-Powered Scanning</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🥗</div>
+                <div>Nutrition Tracking</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💊</div>
+                <div>Supplement Reminders</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💧</div>
+                <div>Water Tracking</div>
+            </div>
+        </div>
+
+        <div class="links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+        </div>
+
+        <div class="app-store">
+            <a href="https://apps.apple.com/app/ingredio" target="_blank">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+            </a>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Ingredio. All rights reserved.</p>
+            <p>Contact: <a href="mailto:support@ingredioscanner.app" style="color: #667eea;">support@ingredioscanner.app</a></p>
+        </footer>
+    </div>
+</body>
+</html>
