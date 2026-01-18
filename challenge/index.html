@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ingredio Challenge</title>
+    <meta property="al:ios:app_store_id" content="6756083587" />
+    <meta property="al:ios:app_name" content="Ingredio" />
+    <script>
+      const challengeId = window.location.pathname.split("/").pop();
+      const appLink = `ingredio://challenge/${challengeId}`;
+      const storeLink = "https://apps.apple.com/app/id6756083587";
+
+      window.location.replace(appLink);
+      setTimeout(() => {
+        window.location.replace(storeLink);
+      }, 500);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to Ingredio...</p>
+    <p><a href="https://apps.apple.com/app/id6756083587">Open App Store</a></p>
+  </body>
+</html>
