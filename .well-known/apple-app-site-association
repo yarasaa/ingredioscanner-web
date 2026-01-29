@@ -5,7 +5,8 @@
             {
                 "appID": "63VUWUSJ8H.com.yarasa.Ingredio",
                 "paths": [
-                    "/challenge/*"
+                    "/challenge/*",
+                    "/friend/*"
                 ]
             }
         ]
