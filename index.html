@@ -3,139 +3,868 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingredio - Smart Ingredient Scanner</title>
+    <title>Ingredio - AI-Powered Ingredient Scanner & Nutrition Tracker</title>
+    <meta name="description" content="Scan ingredients with AI, track your nutrition, plan meals, and achieve your health goals. Available in 8 languages.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            --gradient-2: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-primary);
+            background: var(--bg-dark);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 40px 20px;
+            position: relative;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                var(--bg-dark);
         }
-        .container {
-            max-width: 600px;
-            text-align: center;
-            background: white;
-            padding: 50px 40px;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        .logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 27px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        h1 {
-            color: #1a1a1a;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        .tagline {
-            color: #6b7280;
-            font-size: 1.1em;
-            margin-bottom: 30px;
-        }
-        .features {
+
+        .hero-content {
+            max-width: 1200px;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
         }
-        .feature {
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 0.9em;
+
+        .hero-text {
+            animation: fadeInUp 0.8s ease-out;
         }
-        .feature-icon {
-            font-size: 1.5em;
-            margin-bottom: 5px;
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .links {
+
+        .logo-container {
             display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
         }
-        .links a {
-            color: #667eea;
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .app-name {
+            font-size: 2.5em;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .description {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+
+        .app-store-badge {
+            height: 54px;
+            transition: transform 0.3s ease;
+        }
+
+        .app-store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            padding: 12px 24px;
-            border: 2px solid #667eea;
-            border-radius: 8px;
-            transition: all 0.3s;
+            padding: 10px 16px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            transition: all 0.3s ease;
         }
-        .links a:hover {
-            background: #667eea;
+
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .phone-mockup {
+            width: 300px;
+            height: 600px;
+            background: var(--bg-card);
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow:
+                0 50px 100px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #1a1f36 0%, #0d1025 100%);
+            border-radius: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 8px;
+            width: 120px;
+            height: 28px;
+            background: #000;
+            border-radius: 20px;
+        }
+
+        .scanner-demo {
+            width: 100%;
+            text-align: center;
+        }
+
+        .scanner-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .scanner-text {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .scanner-subtext {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 20px;
+            background: var(--bg-dark);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon.scanner { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+        .feature-icon.tracker { background: linear-gradient(135deg, #10b981, #14b8a6); }
+        .feature-icon.planner { background: linear-gradient(135deg, #f59e0b, #f97316); }
+        .feature-icon.shopping { background: linear-gradient(135deg, #ec4899, #f43f5e); }
+        .feature-icon.gamification { background: linear-gradient(135deg, #8b5cf6, #a855f7); }
+        .feature-icon.health { background: linear-gradient(135deg, #ef4444, #f87171); }
+
+        .feature-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .feature-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 0.75em;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(99, 102, 241, 0.1);
+            color: #a5b4fc;
+        }
+
+        /* AI Section */
+        .ai-section {
+            padding: 100px 20px;
+            background:
+                radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 60%),
+                var(--bg-dark);
+        }
+
+        .ai-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .ai-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .ai-badge {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ai-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .ai-model {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .ai-provider {
+            color: var(--text-secondary);
+        }
+
+        .ai-text h2 {
+            font-size: 2.2em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .ai-text p {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .ai-features-list {
+            list-style: none;
+        }
+
+        .ai-features-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        .ai-features-list li::before {
+            content: "✓";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Languages Section */
+        .languages {
+            padding: 80px 20px;
+            background: var(--bg-card);
+        }
+
+        .languages-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .languages h2 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+        }
+
+        .languages-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .language-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--bg-dark);
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .language-flag {
+            font-size: 1.5em;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 20px;
+            background: var(--bg-dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+        }
+
+        .footer-brand span {
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .footer-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
             color: white;
         }
-        .app-store {
-            margin-top: 20px;
+
+        .footer-links h4 {
+            font-size: 1em;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
         }
-        .app-store img {
-            height: 50px;
+
+        .footer-links a {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
         }
-        footer {
-            margin-top: 30px;
-            color: #9ca3af;
-            font-size: 0.85em;
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .footer-bottom a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .phone-mockup {
+                width: 260px;
+                height: 520px;
+            }
+
+            .ai-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .ai-visual {
+                order: -1;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand {
+                justify-content: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .tagline {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="Icon-1024.png" alt="Ingredio Logo" class="logo">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="logo-container">
+                    <img src="Icon-1024.png" alt="Ingredio Logo" class="logo">
+                    <span class="app-name">Ingredio</span>
+                </div>
 
-        <h1>Ingredio</h1>
-        <p class="tagline">Smart Ingredient Scanner & Nutrition Tracker</p>
+                <h1 class="tagline">AI-Powered Ingredient Scanner & Nutrition Tracker</h1>
 
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">📸</div>
-                <div>AI-Powered Scanning</div>
+                <p class="description">
+                    Scan food labels instantly with AI, track your daily nutrition, plan meals smartly, and achieve your health goals. Perfect for humans and pets alike!
+                </p>
+
+                <div class="cta-buttons">
+                    <a href="https://apps.apple.com/app/ingredio" target="_blank">
+                        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-badge">
+                    </a>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.instagram.com/IngredioScanner" target="_blank" class="social-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                        @IngredioScanner
+                    </a>
+                </div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">🥗</div>
-                <div>Nutrition Tracking</div>
+
+            <div class="hero-visual">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="phone-notch"></div>
+                        <div class="scanner-demo">
+                            <div class="scanner-icon">📸</div>
+                            <div class="scanner-text">Scan Any Label</div>
+                            <div class="scanner-subtext">AI analyzes ingredients instantly</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">💊</div>
-                <div>Supplement Reminders</div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-subtitle">Everything you need to understand what you eat and achieve your health goals</p>
             </div>
-            <div class="feature">
-                <div class="feature-icon">💧</div>
-                <div>Water Tracking</div>
+
+            <div class="features-grid">
+                <!-- AI Scanner -->
+                <div class="feature-card">
+                    <div class="feature-icon scanner">📸</div>
+                    <h3 class="feature-title">AI-Powered Scanner</h3>
+                    <p class="feature-description">
+                        Point your camera at any food label and let AI instantly analyze ingredients. Get health scores, allergen warnings, and dietary compatibility checks in real-time.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">Real-time OCR</span>
+                        <span class="tag">Barcode Scan</span>
+                        <span class="tag">100M+ Products</span>
+                    </div>
+                </div>
+
+                <!-- Nutrition Tracker -->
+                <div class="feature-card">
+                    <div class="feature-icon tracker">📊</div>
+                    <h3 class="feature-title">Complete Nutrition Tracking</h3>
+                    <p class="feature-description">
+                        Track calories, macros (protein, carbs, fat), water intake, and supplements all in one place. Beautiful charts show your weekly and monthly trends.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">Macro Tracking</span>
+                        <span class="tag">Water Goals</span>
+                        <span class="tag">Supplement Reminders</span>
+                    </div>
+                </div>
+
+                <!-- Meal Planner -->
+                <div class="feature-card">
+                    <div class="feature-icon planner">🍽️</div>
+                    <h3 class="feature-title">Smart Meal Planning</h3>
+                    <p class="feature-description">
+                        Get AI-powered meal suggestions based on your goals, dietary preferences, and budget. Plan your entire week with personalized recommendations.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">AI Suggestions</span>
+                        <span class="tag">Budget Planning</span>
+                        <span class="tag">Seasonal Recipes</span>
+                    </div>
+                </div>
+
+                <!-- Shopping List -->
+                <div class="feature-card">
+                    <div class="feature-icon shopping">🛒</div>
+                    <h3 class="feature-title">Smart Shopping List</h3>
+                    <p class="feature-description">
+                        Automatically generate shopping lists from your meal plans. Organize by category, track prices, and never forget an ingredient again.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">Auto-Generate</span>
+                        <span class="tag">Price Tracking</span>
+                        <span class="tag">Categories</span>
+                    </div>
+                </div>
+
+                <!-- Gamification -->
+                <div class="feature-card">
+                    <div class="feature-icon gamification">🏆</div>
+                    <h3 class="feature-title">Achievements & Streaks</h3>
+                    <p class="feature-description">
+                        Stay motivated with 17+ achievements, daily quests, XP system, and streak tracking. Compete with friends on the leaderboard!
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">25 Levels</span>
+                        <span class="tag">Daily Quests</span>
+                        <span class="tag">Leaderboards</span>
+                    </div>
+                </div>
+
+                <!-- Health Integration -->
+                <div class="feature-card">
+                    <div class="feature-icon health">❤️</div>
+                    <h3 class="feature-title">Health Integration</h3>
+                    <p class="feature-description">
+                        Sync with Apple Health to track your complete wellness picture. Your nutrition data seamlessly integrates with your activity and health metrics.
+                    </p>
+                    <div class="feature-tags">
+                        <span class="tag">Apple Health</span>
+                        <span class="tag">Widgets</span>
+                        <span class="tag">Siri Shortcuts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Section -->
+    <section class="ai-section">
+        <div class="ai-content">
+            <div class="ai-visual">
+                <div class="ai-badge">
+                    <div class="ai-icon">🤖</div>
+                    <div class="ai-model">Gemini 2.5 Flash</div>
+                    <div class="ai-provider">Powered by Google AI</div>
+                </div>
+            </div>
+
+            <div class="ai-text">
+                <h2>Advanced AI That Understands Food</h2>
+                <p>
+                    Ingredio uses Google's latest Gemini 2.5 Flash AI model to analyze ingredients with unprecedented accuracy. Our AI doesn't just read labels—it understands nutrition science.
+                </p>
+                <ul class="ai-features-list">
+                    <li>Instant ingredient analysis with health scoring</li>
+                    <li>Personalized dietary recommendations</li>
+                    <li>AI Nutrition Coach for real-time advice</li>
+                    <li>Smart meal suggestions based on your goals</li>
+                    <li>Pet-safe ingredient checking for cats & dogs</li>
+                    <li>Detective Kid mode for child-safe products</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section class="languages">
+        <div class="languages-container">
+            <h2>Available in 8 Languages</h2>
+            <div class="languages-grid">
+                <div class="language-badge">
+                    <span class="language-flag">🇺🇸</span>
+                    <span>English</span>
+                </div>
+                <div class="language-badge">
+                    <span class="language-flag">🇹🇷</span>
+                    <span>Türkçe</span>
+                </div>
+                <div class="language-badge">
+                    <span class="language-flag">🇩🇪</span>
+                    <span>Deutsch</span>
+                </div>
+                <div class="language-badge">
+                    <span class="language-flag">🇪🇸</span>
+                    <span>Español</span>
+                </div>
+                <div class="language-badge">
+                    <span class="language-flag">🇫🇷</span>
+                    <span>Français</span>
+                </div>
+                <div class="language-badge">
+                    <span class="language-flag">🇧🇷</span>
+                    <span>Português</span>
+                </div>
+                <div class="language-badge">
+                    <span class="language-flag">🇯🇵</span>
+                    <span>日本語</span>
+                </div>
+                <div class="language-badge">
+                    <span class="language-flag">🇰🇷</span>
+                    <span>한국어</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-brand">
+                    <img src="Icon-1024.png" alt="Ingredio">
+                    <span>Ingredio</span>
+                </div>
+                <p class="footer-description">
+                    Your AI-powered companion for smarter eating. Scan, track, plan, and achieve your nutrition goals.
+                </p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/IngredioScanner" target="_blank" title="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:support@ingredioscanner.app" title="Email">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Support</h4>
+                <a href="mailto:support@ingredioscanner.app">Contact Us</a>
+                <a href="https://www.instagram.com/IngredioScanner" target="_blank">Instagram</a>
             </div>
         </div>
 
-        <div class="links">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Use</a>
-        </div>
-
-        <div class="app-store">
-            <a href="https://apps.apple.com/app/ingredio" target="_blank">
-                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
-            </a>
-        </div>
-
-        <footer>
+        <div class="footer-bottom">
             <p>&copy; 2025 Ingredio. All rights reserved.</p>
-            <p>Contact: <a href="mailto:support@ingredioscanner.app" style="color: #667eea;">support@ingredioscanner.app</a></p>
-        </footer>
-    </div>
+            <p>Made with ❤️ for healthier living</p>
+        </div>
+    </footer>
 </body>
 </html>
