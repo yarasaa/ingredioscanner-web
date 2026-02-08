@@ -205,24 +205,241 @@
         .scanner-icon {
             font-size: 80px;
             margin-bottom: 20px;
-            animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        /* Scanner Animation Stages */
+        .scanner-demo {
+            position: relative;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scan-stage {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .scan-stage.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stage 1: Scanning */
+        .stage-scan .scan-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+            animation: scanPulse 1.5s ease-in-out infinite;
+        }
+
+        .scan-frame {
+            width: 140px;
+            height: 100px;
+            border: 3px solid var(--primary);
+            border-radius: 12px;
+            position: relative;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: scanLine 2s ease-in-out infinite;
+        }
+
+        .scan-corners {
+            position: absolute;
+            inset: -3px;
+        }
+
+        .scan-corners::before,
+        .scan-corners::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--secondary);
+        }
+
+        .scan-corners::before {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 8px 0 0 0;
+        }
+
+        .scan-corners::after {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+            border-radius: 0 0 8px 0;
+        }
+
+        .product-preview {
+            font-size: 48px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes scanLine {
+            0%, 100% { top: 0; opacity: 1; }
+            50% { top: calc(100% - 3px); opacity: 0.5; }
+        }
+
+        @keyframes scanPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        /* Stage 2: Analyzing */
+        .stage-analyze .analyze-icon {
+            font-size: 56px;
+            margin-bottom: 16px;
+            animation: rotate 2s linear infinite;
+        }
+
+        .analyze-dots {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .analyze-dots span {
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: dotPulse 1.4s ease-in-out infinite;
+        }
+
+        .analyze-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .analyze-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes dotPulse {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Stage 3: Result */
+        .stage-result .result-card {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 16px;
+            padding: 16px 20px;
+            width: 180px;
+            animation: resultPopIn 0.5s ease-out;
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .result-header span:first-child {
+            font-size: 28px;
+        }
+
+        .result-header span:last-child {
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .result-score {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .score-badge {
+            width: 36px;
+            height: 36px;
+            background: var(--secondary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1em;
+            color: white;
+        }
+
+        .score-text {
+            font-size: 0.75em;
+            color: var(--text-secondary);
+        }
+
+        .result-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .result-tag {
+            font-size: 0.65em;
+            padding: 4px 8px;
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .result-tag.warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+        }
+
+        @keyframes resultPopIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
         .scanner-text {
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 8px;
+            margin-top: 16px;
         }
 
         .scanner-subtext {
-            font-size: 0.9em;
+            font-size: 0.85em;
             color: var(--text-secondary);
+            margin-top: 4px;
         }
 
         /* Features Section */
@@ -648,9 +865,48 @@
                     <div class="phone-screen">
                         <div class="phone-notch"></div>
                         <div class="scanner-demo">
-                            <div class="scanner-icon">📸</div>
-                            <div class="scanner-text">Scan Any Label</div>
-                            <div class="scanner-subtext">AI analyzes ingredients instantly</div>
+                            <!-- Stage 1: Scanning -->
+                            <div class="scan-stage stage-scan active" id="stage-1">
+                                <div class="scan-frame">
+                                    <div class="scan-line"></div>
+                                    <div class="scan-corners"></div>
+                                    <div class="product-preview">🍫</div>
+                                </div>
+                                <div class="scanner-text">Scanning Label...</div>
+                                <div class="scanner-subtext">Point camera at ingredients</div>
+                            </div>
+
+                            <!-- Stage 2: Analyzing -->
+                            <div class="scan-stage stage-analyze" id="stage-2">
+                                <div class="analyze-icon">🧠</div>
+                                <div class="scanner-text">AI Analyzing...</div>
+                                <div class="scanner-subtext">Checking 50+ ingredients</div>
+                                <div class="analyze-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+
+                            <!-- Stage 3: Result -->
+                            <div class="scan-stage stage-result" id="stage-3">
+                                <div class="result-card">
+                                    <div class="result-header">
+                                        <span>🍫</span>
+                                        <span>Dark Chocolate</span>
+                                    </div>
+                                    <div class="result-score">
+                                        <div class="score-badge">A</div>
+                                        <div class="score-text">Health Score: 85/100</div>
+                                    </div>
+                                    <div class="result-tags">
+                                        <span class="result-tag">Vegan</span>
+                                        <span class="result-tag">Low Sugar</span>
+                                        <span class="result-tag warning">Contains Soy</span>
+                                    </div>
+                                </div>
+                                <div class="scanner-text">Analysis Complete!</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -866,5 +1122,68 @@
             <p>Made with ❤️ for healthier living</p>
         </div>
     </footer>
+    <script>
+        // Scanner Animation Loop
+        const stages = ['stage-1', 'stage-2', 'stage-3'];
+        const products = [
+            { emoji: '🍫', name: 'Dark Chocolate', score: 'A', scoreNum: 85, tags: ['Vegan', 'Low Sugar'], warning: 'Contains Soy' },
+            { emoji: '🥛', name: 'Oat Milk', score: 'A', scoreNum: 92, tags: ['Dairy-Free', 'Organic'], warning: null },
+            { emoji: '🍪', name: 'Protein Cookie', score: 'B', scoreNum: 72, tags: ['High Protein'], warning: 'Contains Nuts' },
+            { emoji: '🥤', name: 'Energy Drink', score: 'C', scoreNum: 58, tags: ['Sugar-Free'], warning: 'Caffeine' },
+            { emoji: '🥜', name: 'Peanut Butter', score: 'A', scoreNum: 88, tags: ['Natural', 'No Palm Oil'], warning: null }
+        ];
+
+        let currentStage = 0;
+        let currentProduct = 0;
+        const timings = [2500, 2000, 3000]; // Duration for each stage in ms
+
+        function updateProduct() {
+            const product = products[currentProduct];
+
+            // Update scan preview
+            document.querySelector('.product-preview').textContent = product.emoji;
+
+            // Update result card
+            document.querySelector('.result-header span:first-child').textContent = product.emoji;
+            document.querySelector('.result-header span:last-child').textContent = product.name;
+            document.querySelector('.score-badge').textContent = product.score;
+            document.querySelector('.score-badge').style.background =
+                product.score === 'A' ? '#10b981' :
+                product.score === 'B' ? '#f59e0b' : '#ef4444';
+            document.querySelector('.score-text').textContent = `Health Score: ${product.scoreNum}/100`;
+
+            // Update tags
+            const tagsContainer = document.querySelector('.result-tags');
+            tagsContainer.innerHTML = product.tags.map(tag =>
+                `<span class="result-tag">${tag}</span>`
+            ).join('');
+            if (product.warning) {
+                tagsContainer.innerHTML += `<span class="result-tag warning">${product.warning}</span>`;
+            }
+        }
+
+        function nextStage() {
+            // Remove active from current stage
+            document.getElementById(stages[currentStage]).classList.remove('active');
+
+            // Move to next stage
+            currentStage = (currentStage + 1) % stages.length;
+
+            // If we're back to stage 1, change product
+            if (currentStage === 0) {
+                currentProduct = (currentProduct + 1) % products.length;
+                updateProduct();
+            }
+
+            // Add active to new stage
+            document.getElementById(stages[currentStage]).classList.add('active');
+
+            // Schedule next transition
+            setTimeout(nextStage, timings[currentStage]);
+        }
+
+        // Start animation loop
+        setTimeout(nextStage, timings[0]);
+    </script>
 </body>
 </html>
