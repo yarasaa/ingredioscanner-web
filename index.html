@@ -128,8 +128,9 @@
 
         .social-links {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .social-link {
@@ -139,7 +140,8 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            padding: 10px 16px;
+            font-size: 0.9em;
+            padding: 8px 14px;
             border-radius: 12px;
             background: var(--bg-card);
             transition: all 0.3s ease;
@@ -152,305 +154,28 @@
         }
 
         .social-link svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
         }
 
+        /* Hero Screenshot */
         .hero-visual {
             display: flex;
             justify-content: center;
             animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
-        .phone-mockup {
-            width: 300px;
-            height: 600px;
-            background: var(--bg-card);
-            border-radius: 40px;
-            padding: 12px;
-            box-shadow:
-                0 50px 100px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, #1a1f36 0%, #0d1025 100%);
+        .hero-screenshot {
+            max-width: 300px;
             border-radius: 32px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
         }
 
-        .phone-notch {
-            position: absolute;
-            top: 8px;
-            width: 120px;
-            height: 28px;
-            background: #000;
-            border-radius: 20px;
-        }
-
-        .scanner-demo {
-            width: 100%;
-            text-align: center;
-        }
-
-        .scanner-icon {
-            font-size: 80px;
-            margin-bottom: 20px;
-        }
-
-        /* Scanner Animation Stages */
-        .scanner-demo {
-            position: relative;
-            height: 280px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .scan-stage {
-            position: absolute;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
-
-        .scan-stage.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Stage 1: Scanning */
-        .stage-scan .scan-icon {
-            font-size: 64px;
-            margin-bottom: 16px;
-            animation: scanPulse 1.5s ease-in-out infinite;
-        }
-
-        .scan-frame {
-            width: 140px;
-            height: 100px;
-            border: 3px solid var(--primary);
-            border-radius: 12px;
-            position: relative;
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-
-        .scan-line {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-            animation: scanLine 2s ease-in-out infinite;
-        }
-
-        .scan-corners {
-            position: absolute;
-            inset: -3px;
-        }
-
-        .scan-corners::before,
-        .scan-corners::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 3px solid var(--secondary);
-        }
-
-        .scan-corners::before {
-            top: 0;
-            left: 0;
-            border-right: none;
-            border-bottom: none;
-            border-radius: 8px 0 0 0;
-        }
-
-        .scan-corners::after {
-            bottom: 0;
-            right: 0;
-            border-left: none;
-            border-top: none;
-            border-radius: 0 0 8px 0;
-        }
-
-        .product-preview {
-            font-size: 48px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        @keyframes scanLine {
-            0%, 100% { top: 0; opacity: 1; }
-            50% { top: calc(100% - 3px); opacity: 0.5; }
-        }
-
-        @keyframes scanPulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        /* Stage 2: Analyzing */
-        .stage-analyze .analyze-icon {
-            font-size: 56px;
-            margin-bottom: 16px;
-            animation: rotate 2s linear infinite;
-        }
-
-        .analyze-dots {
-            display: flex;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .analyze-dots span {
-            width: 10px;
-            height: 10px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: dotPulse 1.4s ease-in-out infinite;
-        }
-
-        .analyze-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .analyze-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes dotPulse {
-            0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
-            40% { transform: scale(1); opacity: 1; }
-        }
-
-        /* Stage 3: Result */
-        .stage-result .result-card {
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 16px;
-            padding: 16px 20px;
-            width: 180px;
-            animation: resultPopIn 0.5s ease-out;
-        }
-
-        .result-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .result-header span:first-child {
-            font-size: 28px;
-        }
-
-        .result-header span:last-child {
-            font-size: 0.85em;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .result-score {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        .score-badge {
-            width: 36px;
-            height: 36px;
-            background: var(--secondary);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.1em;
-            color: white;
-        }
-
-        .score-text {
-            font-size: 0.75em;
-            color: var(--text-secondary);
-        }
-
-        .result-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            justify-content: center;
-        }
-
-        .result-tag {
-            font-size: 0.65em;
-            padding: 4px 8px;
-            background: rgba(16, 185, 129, 0.2);
-            color: #34d399;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-
-        .result-tag.warning {
-            background: rgba(245, 158, 11, 0.2);
-            color: #fbbf24;
-        }
-
-        @keyframes resultPopIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        .scanner-text {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-top: 16px;
-        }
-
-        .scanner-subtext {
-            font-size: 0.85em;
-            color: var(--text-secondary);
-            margin-top: 4px;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 100px 20px;
-            background: var(--bg-dark);
-        }
-
+        /* Section Shared */
         .section-container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 100px 20px;
         }
 
         .section-header {
@@ -475,77 +200,198 @@
             margin: 0 auto;
         }
 
+        /* App Showcase */
+        .showcase {
+            padding: 80px 20px;
+        }
+
+        .showcase-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .showcase-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+
+        .showcase-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .showcase-item.reverse {
+            direction: rtl;
+        }
+
+        .showcase-item.reverse > * {
+            direction: ltr;
+        }
+
+        .showcase-text {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .showcase-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+            margin-bottom: 16px;
+            padding: 6px 14px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 20px;
+        }
+
+        .showcase-title {
+            font-size: 2em;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .showcase-description {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
+        .showcase-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .showcase-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1em;
+            color: var(--text-secondary);
+        }
+
+        .showcase-features li .check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+            color: var(--secondary);
+        }
+
+        .showcase-images {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .showcase-phone {
+            max-width: 240px;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
+            transition: transform 0.4s ease;
+        }
+
+        .showcase-phone:hover {
+            transform: translateY(-8px);
+        }
+
+        .showcase-phone.secondary {
+            max-width: 200px;
+            margin-top: 40px;
+            opacity: 0.9;
+        }
+
+        /* Features Grid */
+        .features {
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 60%),
+                var(--bg-dark);
+        }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
         }
 
         .feature-card {
             background: var(--bg-card);
-            border-radius: 24px;
+            border-radius: 20px;
             padding: 32px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-4px);
             border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .feature-icon {
-            width: 64px;
-            height: 64px;
+            width: 56px;
+            height: 56px;
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
+            font-size: 28px;
             margin-bottom: 20px;
         }
 
-        .feature-icon.scanner { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
-        .feature-icon.tracker { background: linear-gradient(135deg, #10b981, #14b8a6); }
-        .feature-icon.planner { background: linear-gradient(135deg, #f59e0b, #f97316); }
-        .feature-icon.shopping { background: linear-gradient(135deg, #ec4899, #f43f5e); }
-        .feature-icon.gamification { background: linear-gradient(135deg, #8b5cf6, #a855f7); }
-        .feature-icon.health { background: linear-gradient(135deg, #ef4444, #f87171); }
+        .feature-icon.scanner { background: rgba(99, 102, 241, 0.15); }
+        .feature-icon.tracker { background: rgba(16, 185, 129, 0.15); }
+        .feature-icon.planner { background: rgba(245, 158, 11, 0.15); }
+        .feature-icon.shopping { background: rgba(236, 72, 153, 0.15); }
+        .feature-icon.gamification { background: rgba(168, 85, 247, 0.15); }
+        .feature-icon.health { background: rgba(239, 68, 68, 0.15); }
 
         .feature-title {
-            font-size: 1.4em;
+            font-size: 1.2em;
             font-weight: 700;
             margin-bottom: 12px;
-            color: var(--text-primary);
         }
 
         .feature-description {
             color: var(--text-secondary);
-            line-height: 1.7;
+            font-size: 0.95em;
             margin-bottom: 16px;
         }
 
         .feature-tags {
             display: flex;
-            flex-wrap: wrap;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         .tag {
             font-size: 0.75em;
-            font-weight: 600;
-            padding: 6px 12px;
-            border-radius: 20px;
+            padding: 4px 10px;
+            border-radius: 6px;
             background: rgba(99, 102, 241, 0.1);
-            color: #a5b4fc;
+            color: var(--primary);
+            font-weight: 500;
         }
 
         /* AI Section */
         .ai-section {
             padding: 100px 20px;
             background:
-                radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
                 var(--bg-dark);
         }
 
@@ -558,28 +404,22 @@
             align-items: center;
         }
 
-        .ai-visual {
-            display: flex;
-            justify-content: center;
-        }
-
         .ai-badge {
+            text-align: center;
+            padding: 60px 40px;
             background: var(--bg-card);
             border-radius: 24px;
-            padding: 40px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.2);
         }
 
         .ai-icon {
-            font-size: 64px;
+            font-size: 80px;
             margin-bottom: 20px;
         }
 
         .ai-model {
             font-size: 1.5em;
             font-weight: 700;
-            color: var(--text-primary);
             margin-bottom: 8px;
         }
 
@@ -588,17 +428,15 @@
         }
 
         .ai-text h2 {
-            font-size: 2.2em;
+            font-size: 2em;
             font-weight: 800;
             margin-bottom: 20px;
-            color: var(--text-primary);
         }
 
         .ai-text p {
             color: var(--text-secondary);
-            font-size: 1.1em;
-            line-height: 1.8;
             margin-bottom: 24px;
+            line-height: 1.8;
         }
 
         .ai-features-list {
@@ -606,71 +444,128 @@
         }
 
         .ai-features-list li {
+            padding: 8px 0;
+            color: var(--text-secondary);
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 16px;
-            color: var(--text-secondary);
         }
 
         .ai-features-list li::before {
-            content: "✓";
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            background: var(--secondary);
-            color: white;
-            border-radius: 50%;
-            font-size: 12px;
+            content: "✦";
+            color: var(--primary);
             font-weight: bold;
         }
 
-        /* Languages Section */
+        /* Stats Bar */
+        .stats-bar {
+            padding: 60px 20px;
+            background: var(--bg-card);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item .stat-number {
+            font-size: 2.5em;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-item .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            margin-top: 4px;
+        }
+
+        /* Languages */
         .languages {
             padding: 80px 20px;
-            background: var(--bg-card);
+            text-align: center;
         }
 
         .languages-container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            text-align: center;
         }
 
         .languages h2 {
             font-size: 2em;
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 40px;
-            color: var(--text-primary);
         }
 
         .languages-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 16px;
         }
 
         .language-badge {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            padding: 12px 20px;
-            background: var(--bg-dark);
+            padding: 16px;
+            background: var(--bg-card);
             border-radius: 12px;
             font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .language-badge:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
         }
 
         .language-flag {
             font-size: 1.5em;
         }
 
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 20px;
+            text-align: center;
+            background:
+                radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
+                var(--bg-dark);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section .app-store-badge {
+            height: 60px;
+        }
+
         /* Footer */
         footer {
-            padding: 60px 20px;
-            background: var(--bg-dark);
+            padding: 60px 20px 30px;
+            background: var(--bg-card);
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -690,13 +585,13 @@
         }
 
         .footer-brand img {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
         }
 
         .footer-brand span {
-            font-size: 1.5em;
+            font-size: 1.3em;
             font-weight: 700;
         }
 
@@ -711,35 +606,33 @@
         }
 
         .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--bg-card);
-            border-radius: 10px;
             color: var(--text-secondary);
-            text-decoration: none;
             transition: all 0.3s ease;
         }
 
         .footer-social a:hover {
             background: var(--primary);
             color: white;
+            transform: translateY(-2px);
         }
 
         .footer-links h4 {
-            font-size: 1em;
             font-weight: 600;
             margin-bottom: 16px;
-            color: var(--text-primary);
         }
 
         .footer-links a {
             display: block;
             color: var(--text-secondary);
             text-decoration: none;
-            margin-bottom: 12px;
+            padding: 6px 0;
             transition: color 0.3s ease;
         }
 
@@ -750,11 +643,10 @@
         .footer-bottom {
             max-width: 1200px;
             margin: 40px auto 0;
-            padding-top: 24px;
+            padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             justify-content: space-between;
-            align-items: center;
             color: var(--text-secondary);
             font-size: 0.9em;
         }
@@ -765,11 +657,15 @@
         }
 
         /* Responsive */
-        @media (max-width: 968px) {
+        @media (max-width: 900px) {
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: 40px;
+            }
+
+            .logo-container {
+                justify-content: center;
             }
 
             .cta-buttons {
@@ -780,18 +676,43 @@
                 justify-content: center;
             }
 
-            .phone-mockup {
-                width: 260px;
-                height: 520px;
+            .showcase-item,
+            .showcase-item.reverse {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                direction: ltr;
+            }
+
+            .showcase-text {
+                text-align: center;
+            }
+
+            .showcase-features li {
+                justify-content: center;
+            }
+
+            .showcase-images {
+                justify-content: center;
+            }
+
+            .showcase-phone {
+                max-width: 200px;
+            }
+
+            .showcase-phone.secondary {
+                max-width: 170px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
             .ai-content {
                 grid-template-columns: 1fr;
-                text-align: center;
             }
 
-            .ai-visual {
-                order: -1;
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .footer-container {
@@ -810,6 +731,7 @@
             .footer-bottom {
                 flex-direction: column;
                 gap: 12px;
+                text-align: center;
             }
         }
 
@@ -818,12 +740,33 @@
                 grid-template-columns: 1fr;
             }
 
-            .section-title {
-                font-size: 2em;
+            .section-title, .showcase-title {
+                font-size: 1.8em;
             }
 
             .tagline {
                 font-size: 1.2em;
+            }
+
+            .languages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+
+            .stat-item .stat-number {
+                font-size: 2em;
+            }
+
+            .showcase-phone {
+                max-width: 160px;
+            }
+
+            .showcase-phone.secondary {
+                max-width: 130px;
             }
         }
     </style>
@@ -855,72 +798,139 @@
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                         </svg>
-                        @IngredioScanner
+                        Instagram
                     </a>
                     <a href="https://www.tiktok.com/@ingredioapp" target="_blank" class="social-link">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48V13.2a8.16 8.16 0 005.58 2.17v-3.45a4.85 4.85 0 01-5.58-1.57V6.69h5.58z"/>
                         </svg>
-                        @ingredioapp
+                        TikTok
                     </a>
                     <a href="https://x.com/ingredioscanner" target="_blank" class="social-link">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                         </svg>
-                        @ingredioscanner
+                        X
                     </a>
                 </div>
             </div>
 
             <div class="hero-visual">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="phone-notch"></div>
-                        <div class="scanner-demo">
-                            <!-- Stage 1: Scanning -->
-                            <div class="scan-stage stage-scan active" id="stage-1">
-                                <div class="scan-frame">
-                                    <div class="scan-line"></div>
-                                    <div class="scan-corners"></div>
-                                    <div class="product-preview">🍫</div>
-                                </div>
-                                <div class="scanner-text">Scanning Label...</div>
-                                <div class="scanner-subtext">Point camera at ingredients</div>
-                            </div>
+                <img src="screenshots/11_analysis_result.png" alt="Ingredio AI Analysis Result" class="hero-screenshot">
+            </div>
+        </div>
+    </section>
 
-                            <!-- Stage 2: Analyzing -->
-                            <div class="scan-stage stage-analyze" id="stage-2">
-                                <div class="analyze-icon">🧠</div>
-                                <div class="scanner-text">AI Analyzing...</div>
-                                <div class="scanner-subtext">Checking 50+ ingredients</div>
-                                <div class="analyze-dots">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </div>
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">100M+</div>
+                <div class="stat-label">Products in Database</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Languages Supported</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Ingredients Analyzed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">25</div>
+                <div class="stat-label">Achievement Levels</div>
+            </div>
+        </div>
+    </section>
 
-                            <!-- Stage 3: Result -->
-                            <div class="scan-stage stage-result" id="stage-3">
-                                <div class="result-card">
-                                    <div class="result-header">
-                                        <span>🍫</span>
-                                        <span>Dark Chocolate</span>
-                                    </div>
-                                    <div class="result-score">
-                                        <div class="score-badge">A</div>
-                                        <div class="score-text">Health Score: 85/100</div>
-                                    </div>
-                                    <div class="result-tags">
-                                        <span class="result-tag">Vegan</span>
-                                        <span class="result-tag">Low Sugar</span>
-                                        <span class="result-tag warning">Contains Soy</span>
-                                    </div>
-                                </div>
-                                <div class="scanner-text">Analysis Complete!</div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- App Showcase Section -->
+    <section class="showcase">
+        <div class="showcase-container">
+            <div class="section-header">
+                <h2 class="section-title">See It In Action</h2>
+                <p class="section-subtitle">Real screenshots from the app — what you see is what you get</p>
+            </div>
+
+            <!-- Showcase 1: AI Scanner & Analysis -->
+            <div class="showcase-item">
+                <div class="showcase-text">
+                    <div class="showcase-label">AI Scanner</div>
+                    <h3 class="showcase-title">Instant AI-Powered Ingredient Analysis</h3>
+                    <p class="showcase-description">
+                        Point your camera at any food label and get a detailed health score breakdown. Our AI analyzes ingredient quality, nutritional balance, processing level, and additive load in seconds.
+                    </p>
+                    <ul class="showcase-features">
+                        <li><span class="check">&#10003;</span> Health score from 0-100 with letter grade</li>
+                        <li><span class="check">&#10003;</span> 4-category score breakdown</li>
+                        <li><span class="check">&#10003;</span> Healthier alternative suggestions</li>
+                        <li><span class="check">&#10003;</span> Ingredient safety indicators</li>
+                    </ul>
+                </div>
+                <div class="showcase-images">
+                    <img src="screenshots/11_analysis_result.png" alt="AI Analysis Result" class="showcase-phone">
+                    <img src="screenshots/14_ingredients_list.png" alt="Ingredients List" class="showcase-phone secondary">
+                </div>
+            </div>
+
+            <!-- Showcase 2: Nutrition Tracker -->
+            <div class="showcase-item reverse">
+                <div class="showcase-text">
+                    <div class="showcase-label">Nutrition Tracker</div>
+                    <h3 class="showcase-title">Your Complete Health Dashboard</h3>
+                    <p class="showcase-description">
+                        Track calories, macros, water intake, and supplements in one beautiful dashboard. Activity rings show your daily progress at a glance, with AI-powered nutrition coaching.
+                    </p>
+                    <ul class="showcase-features">
+                        <li><span class="check">&#10003;</span> Calorie & macro tracking with activity rings</li>
+                        <li><span class="check">&#10003;</span> Water and supplement tracking</li>
+                        <li><span class="check">&#10003;</span> Daily quests & streak system</li>
+                        <li><span class="check">&#10003;</span> AI Nutrition Coach for advice</li>
+                    </ul>
+                </div>
+                <div class="showcase-images">
+                    <img src="screenshots/06_tracker_dashboard.png" alt="Nutrition Tracker Dashboard" class="showcase-phone">
+                    <img src="screenshots/08_ai_coach.png" alt="AI Nutrition Coach" class="showcase-phone secondary">
+                </div>
+            </div>
+
+            <!-- Showcase 3: Meal Planner -->
+            <div class="showcase-item">
+                <div class="showcase-text">
+                    <div class="showcase-label">Meal Planner</div>
+                    <h3 class="showcase-title">Smart Weekly Meal Planning</h3>
+                    <p class="showcase-description">
+                        Plan your entire week with AI-powered meal suggestions. See your daily calorie targets, quickly add meals, and get personalized recipes with full nutrition details and step-by-step instructions.
+                    </p>
+                    <ul class="showcase-features">
+                        <li><span class="check">&#10003;</span> Weekly calendar with daily targets</li>
+                        <li><span class="check">&#10003;</span> AI-generated recipes with nutrition info</li>
+                        <li><span class="check">&#10003;</span> Quick meal suggestions</li>
+                        <li><span class="check">&#10003;</span> Breakfast, lunch, dinner & snack slots</li>
+                    </ul>
+                </div>
+                <div class="showcase-images">
+                    <img src="screenshots/05_planner_filled.png" alt="Meal Planner" class="showcase-phone">
+                    <img src="screenshots/01_ai_recipe_top.png" alt="AI Recipe" class="showcase-phone secondary">
+                </div>
+            </div>
+
+            <!-- Showcase 4: Alternatives -->
+            <div class="showcase-item reverse">
+                <div class="showcase-text">
+                    <div class="showcase-label">Smart Alternatives</div>
+                    <h3 class="showcase-title">Find Healthier Options Instantly</h3>
+                    <p class="showcase-description">
+                        When a product scores low, Ingredio automatically suggests healthier alternatives. Compare products side-by-side and make better choices for your diet.
+                    </p>
+                    <ul class="showcase-features">
+                        <li><span class="check">&#10003;</span> AI-powered healthier suggestions</li>
+                        <li><span class="check">&#10003;</span> Detailed comparison with reasons</li>
+                        <li><span class="check">&#10003;</span> Works with barcode & label scanning</li>
+                        <li><span class="check">&#10003;</span> Pet-safe ingredient checking</li>
+                    </ul>
+                </div>
+                <div class="showcase-images">
+                    <img src="screenshots/12_alternatives.png" alt="Healthier Alternatives" class="showcase-phone">
                 </div>
             </div>
         </div>
@@ -935,12 +945,11 @@
             </div>
 
             <div class="features-grid">
-                <!-- AI Scanner -->
                 <div class="feature-card">
                     <div class="feature-icon scanner">📸</div>
                     <h3 class="feature-title">AI-Powered Scanner</h3>
                     <p class="feature-description">
-                        Point your camera at any food label and let AI instantly analyze ingredients. Get health scores, allergen warnings, and dietary compatibility checks in real-time.
+                        Point your camera at any food label and let AI instantly analyze ingredients. Get health scores, allergen warnings, and dietary compatibility checks.
                     </p>
                     <div class="feature-tags">
                         <span class="tag">Real-time OCR</span>
@@ -949,68 +958,63 @@
                     </div>
                 </div>
 
-                <!-- Nutrition Tracker -->
                 <div class="feature-card">
                     <div class="feature-icon tracker">📊</div>
                     <h3 class="feature-title">Complete Nutrition Tracking</h3>
                     <p class="feature-description">
-                        Track calories, macros (protein, carbs, fat), water intake, and supplements all in one place. Beautiful charts show your weekly and monthly trends.
+                        Track calories, macros, water intake, and supplements all in one place. Beautiful charts show your weekly and monthly trends.
                     </p>
                     <div class="feature-tags">
                         <span class="tag">Macro Tracking</span>
                         <span class="tag">Water Goals</span>
-                        <span class="tag">Supplement Reminders</span>
+                        <span class="tag">Supplements</span>
                     </div>
                 </div>
 
-                <!-- Meal Planner -->
                 <div class="feature-card">
                     <div class="feature-icon planner">🍽️</div>
                     <h3 class="feature-title">Smart Meal Planning</h3>
                     <p class="feature-description">
-                        Get AI-powered meal suggestions based on your goals, dietary preferences, and budget. Plan your entire week with personalized recommendations.
+                        Get AI-powered meal suggestions based on your goals and preferences. Plan your entire week with personalized recipes.
                     </p>
                     <div class="feature-tags">
                         <span class="tag">AI Suggestions</span>
                         <span class="tag">Budget Planning</span>
-                        <span class="tag">Seasonal Recipes</span>
+                        <span class="tag">Recipes</span>
                     </div>
                 </div>
 
-                <!-- Shopping List -->
                 <div class="feature-card">
                     <div class="feature-icon shopping">🛒</div>
                     <h3 class="feature-title">Smart Shopping List</h3>
                     <p class="feature-description">
-                        Automatically generate shopping lists from your meal plans. Organize by category, track prices, and never forget an ingredient again.
+                        Auto-generate shopping lists from your meal plans. Organize by category and never forget an ingredient again.
                     </p>
                     <div class="feature-tags">
                         <span class="tag">Auto-Generate</span>
-                        <span class="tag">Price Tracking</span>
                         <span class="tag">Categories</span>
+                        <span class="tag">Share Lists</span>
                     </div>
                 </div>
 
-                <!-- Gamification -->
                 <div class="feature-card">
                     <div class="feature-icon gamification">🏆</div>
                     <h3 class="feature-title">Achievements & Streaks</h3>
                     <p class="feature-description">
-                        Stay motivated with 17+ achievements, daily quests, XP system, and streak tracking. Compete with friends on the leaderboard!
+                        Stay motivated with 17+ achievements, daily quests, XP system, and streak tracking. Level up your nutrition journey!
                     </p>
                     <div class="feature-tags">
                         <span class="tag">25 Levels</span>
                         <span class="tag">Daily Quests</span>
-                        <span class="tag">Leaderboards</span>
+                        <span class="tag">Streaks</span>
                     </div>
                 </div>
 
-                <!-- Health Integration -->
                 <div class="feature-card">
                     <div class="feature-icon health">❤️</div>
                     <h3 class="feature-title">Health Integration</h3>
                     <p class="feature-description">
-                        Sync with Apple Health to track your complete wellness picture. Your nutrition data seamlessly integrates with your activity and health metrics.
+                        Sync with Apple Health for a complete wellness picture. Home screen widgets and Siri Shortcuts keep you connected.
                     </p>
                     <div class="feature-tags">
                         <span class="tag">Apple Health</span>
@@ -1036,7 +1040,7 @@
             <div class="ai-text">
                 <h2>Advanced AI That Understands Food</h2>
                 <p>
-                    Ingredio uses Google's latest Gemini 2.5 Flash AI model to analyze ingredients with unprecedented accuracy. Our AI doesn't just read labels—it understands nutrition science.
+                    Ingredio uses Google's latest Gemini 2.5 Flash AI model to analyze ingredients with unprecedented accuracy. Our AI doesn't just read labels — it understands nutrition science.
                 </p>
                 <ul class="ai-features-list">
                     <li>Instant ingredient analysis with health scoring</li>
@@ -1055,40 +1059,25 @@
         <div class="languages-container">
             <h2>Available in 8 Languages</h2>
             <div class="languages-grid">
-                <div class="language-badge">
-                    <span class="language-flag">🇺🇸</span>
-                    <span>English</span>
-                </div>
-                <div class="language-badge">
-                    <span class="language-flag">🇹🇷</span>
-                    <span>Türkçe</span>
-                </div>
-                <div class="language-badge">
-                    <span class="language-flag">🇩🇪</span>
-                    <span>Deutsch</span>
-                </div>
-                <div class="language-badge">
-                    <span class="language-flag">🇪🇸</span>
-                    <span>Español</span>
-                </div>
-                <div class="language-badge">
-                    <span class="language-flag">🇫🇷</span>
-                    <span>Français</span>
-                </div>
-                <div class="language-badge">
-                    <span class="language-flag">🇧🇷</span>
-                    <span>Português</span>
-                </div>
-                <div class="language-badge">
-                    <span class="language-flag">🇯🇵</span>
-                    <span>日本語</span>
-                </div>
-                <div class="language-badge">
-                    <span class="language-flag">🇰🇷</span>
-                    <span>한국어</span>
-                </div>
+                <div class="language-badge"><span class="language-flag">🇺🇸</span><span>English</span></div>
+                <div class="language-badge"><span class="language-flag">🇹🇷</span><span>Türkçe</span></div>
+                <div class="language-badge"><span class="language-flag">🇩🇪</span><span>Deutsch</span></div>
+                <div class="language-badge"><span class="language-flag">🇪🇸</span><span>Español</span></div>
+                <div class="language-badge"><span class="language-flag">🇫🇷</span><span>Français</span></div>
+                <div class="language-badge"><span class="language-flag">🇧🇷</span><span>Português</span></div>
+                <div class="language-badge"><span class="language-flag">🇯🇵</span><span>日本語</span></div>
+                <div class="language-badge"><span class="language-flag">🇰🇷</span><span>한국어</span></div>
             </div>
         </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Start Eating Smarter Today</h2>
+        <p>Download Ingredio free and discover what's really in your food.</p>
+        <a href="https://apps.apple.com/app/id6756083587" target="_blank">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-badge">
+        </a>
     </section>
 
     <!-- Footer -->
@@ -1133,7 +1122,7 @@
             </div>
 
             <div class="footer-links">
-                <h4>Support</h4>
+                <h4>Connect</h4>
                 <a href="mailto:support@ingredioscanner.app">Contact Us</a>
                 <a href="https://www.instagram.com/IngredioScanner" target="_blank">Instagram</a>
                 <a href="https://www.tiktok.com/@ingredioapp" target="_blank">TikTok</a>
@@ -1143,71 +1132,8 @@
 
         <div class="footer-bottom">
             <p>&copy; 2025 Ingredio. All rights reserved.</p>
-            <p>Made with ❤️ for healthier living</p>
+            <p>Made with &#10084;&#65039; for healthier living</p>
         </div>
     </footer>
-    <script>
-        // Scanner Animation Loop
-        const stages = ['stage-1', 'stage-2', 'stage-3'];
-        const products = [
-            { emoji: '🍫', name: 'Dark Chocolate', score: 'A', scoreNum: 85, tags: ['Vegan', 'Low Sugar'], warning: 'Contains Soy' },
-            { emoji: '🥛', name: 'Oat Milk', score: 'A', scoreNum: 92, tags: ['Dairy-Free', 'Organic'], warning: null },
-            { emoji: '🍪', name: 'Protein Cookie', score: 'B', scoreNum: 72, tags: ['High Protein'], warning: 'Contains Nuts' },
-            { emoji: '🥤', name: 'Energy Drink', score: 'C', scoreNum: 58, tags: ['Sugar-Free'], warning: 'Caffeine' },
-            { emoji: '🥜', name: 'Peanut Butter', score: 'A', scoreNum: 88, tags: ['Natural', 'No Palm Oil'], warning: null }
-        ];
-
-        let currentStage = 0;
-        let currentProduct = 0;
-        const timings = [2500, 2000, 3000]; // Duration for each stage in ms
-
-        function updateProduct() {
-            const product = products[currentProduct];
-
-            // Update scan preview
-            document.querySelector('.product-preview').textContent = product.emoji;
-
-            // Update result card
-            document.querySelector('.result-header span:first-child').textContent = product.emoji;
-            document.querySelector('.result-header span:last-child').textContent = product.name;
-            document.querySelector('.score-badge').textContent = product.score;
-            document.querySelector('.score-badge').style.background =
-                product.score === 'A' ? '#10b981' :
-                product.score === 'B' ? '#f59e0b' : '#ef4444';
-            document.querySelector('.score-text').textContent = `Health Score: ${product.scoreNum}/100`;
-
-            // Update tags
-            const tagsContainer = document.querySelector('.result-tags');
-            tagsContainer.innerHTML = product.tags.map(tag =>
-                `<span class="result-tag">${tag}</span>`
-            ).join('');
-            if (product.warning) {
-                tagsContainer.innerHTML += `<span class="result-tag warning">${product.warning}</span>`;
-            }
-        }
-
-        function nextStage() {
-            // Remove active from current stage
-            document.getElementById(stages[currentStage]).classList.remove('active');
-
-            // Move to next stage
-            currentStage = (currentStage + 1) % stages.length;
-
-            // If we're back to stage 1, change product
-            if (currentStage === 0) {
-                currentProduct = (currentProduct + 1) % products.length;
-                updateProduct();
-            }
-
-            // Add active to new stage
-            document.getElementById(stages[currentStage]).classList.add('active');
-
-            // Schedule next transition
-            setTimeout(nextStage, timings[currentStage]);
-        }
-
-        // Start animation loop
-        setTimeout(nextStage, timings[0]);
-    </script>
 </body>
 </html>
